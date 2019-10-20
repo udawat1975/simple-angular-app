@@ -20,7 +20,9 @@ steps:
     npx ng build --prod
   displayName: 'npm install and build'
 
-- task: ArchiveFiles@2
+- task: PublishBuildArtifacts@1
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
+    PathtoPublish: 'dist/simple-angular-app'
+    ArtifactName: 'web-app'
+    publishLocation: 'Container'
+  displayName: 'Publish Artifacts'
