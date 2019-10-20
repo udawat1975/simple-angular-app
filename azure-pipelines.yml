@@ -20,9 +20,13 @@ steps:
     npx ng build --prod
   displayName: 'npm install and build'
 
-- task: PublishBuildArtifacts@1
+- task: AzureRmWebAppDeployment@4
   inputs:
-    PathtoPublish: 'dist/ng-azure-devops'
-    ArtifactName: 'web-app'
-    publishLocation: 'Container'
-  displayName: 'Publish Artifacts'
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial (8fba946a-955c-4fa2-9c2c-53bacf55022a)'
+    appType: 'webApp'
+    WebAppName: 'udawat-devops'
+    deployToSlotOrASE: true
+    ResourceGroupName: 'ng-azure-devops'
+    SlotName: 'production'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
